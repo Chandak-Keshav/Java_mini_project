@@ -3,7 +3,11 @@
 Portal:: Portal()
 {
     // portalId = Portal::getPortalId();
+    // For now, the portal id is set to 1.
     portalId = 1;
+    
+    // Open PortalToPlatform.txt in append mode.
+    // Open PlatformToPortal.txt in read mode.
     portalToPlatform.open("PortalToPlatform.txt", ios::app);
     platformToPortal.open("PlatformToPortal.txt");
 }
@@ -30,10 +34,11 @@ bool Portal::checkResponse()
 {
     bool flag = false;
 
-    getline(platformToPortal, tempLine);
-    if(!tempLine.empty())
+    getline(platformToPortal, tempLine2);
+    // cout << tempLine2;
+    if(!tempLine2.empty() && previousLine != tempLine2)
     {
-        previousLine = tempLine;
+        previousLine = tempLine2;
         flag = true;
     }
 
@@ -43,6 +48,8 @@ bool Portal::checkResponse()
         sendUserList(sortedList);
         listing.clear();
     }
+
+    if(!flag) platformToPortal.clear();
 
     return flag;
 }
@@ -72,8 +79,6 @@ void Portal::sendUserData()
         if(prevId != Id)
         {
             prevId = Id;
-            // cout << "test";
-            // cout << listing.size();
             
             if(!listing.empty())
             {
@@ -95,7 +100,7 @@ void Portal::sendUserData()
             sendUserList(sortedList);
             listing.clear();
         }
-        cout << "\n";
+        cout << dataRecieved[2] << "\n";
     }
     
 }

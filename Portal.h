@@ -18,7 +18,7 @@ class Portal
         vector <product> listing;
         ofstream portalToPlatform;
         ifstream platformToPortal;
-        string tempLine;
+        string tempLine, tempLine2;
         string previousLine;
         map <string, string> mapIdToCommandType;
         queue <string> queueOfSortParameter;
