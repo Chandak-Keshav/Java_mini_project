@@ -7,7 +7,6 @@ import ecomm.Globals.Category;
 public class ProductMain extends Product {
     private float price;
     private int quantity;
-    private float tot_price;
     private String product_id,name;
     Globals.Category category;
     public ProductMain(Category p_category,String p_name,String p_product_id,float p_price,int p_quantity)
@@ -17,7 +16,6 @@ public class ProductMain extends Product {
         product_id=p_product_id;
         price=p_price;
         quantity=p_quantity;
-        tot_price=price*quantity;
     }
     public Globals.Category getCategory()
     {
@@ -42,8 +40,5 @@ public class ProductMain extends Product {
 	public int getQuantity()
     {
         return quantity;
-    }
-    public void increasePrice() {
-        price=tot_price/quantity;
     }
 }

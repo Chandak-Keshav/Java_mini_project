@@ -9,7 +9,7 @@ public class Globals {
 	}
 	
 	// String names of the above to used for writing/reading to message files or user interface
-	public String getCategoryName(Category c) {
+	public static String getCategoryName(Category c) {
 		switch(c) {
 		case Mobile: 
 			return "Mobile";

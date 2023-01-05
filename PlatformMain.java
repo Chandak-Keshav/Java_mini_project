@@ -1,9 +1,8 @@
 import java.util.Scanner;
 
 import demo.DemoPlatform;
+import demo.Seller_Keshav.Seller1;
 import ecomm.Platform;
-import ecomm.Seller;
-import ecomm.Seller1;
 
 public class PlatformMain {
 

@@ -1,6 +1,5 @@
 package demo.Seller_Ricky;
 import java.util.ArrayList;
-import java.util.Random;
 
 import ecomm.Globals;
 import ecomm.Platform;
@@ -9,7 +8,6 @@ import ecomm.Seller;
 
 public class Seller1 extends Seller{
     private ArrayList<ProductMain> productList=new ArrayList<ProductMain>();
-    private int p_id=0;
     public Seller1(String id) {
         super(id);
         addBook();
@@ -19,57 +17,36 @@ public class Seller1 extends Seller{
     {
         thePlatform.addSeller(this);//we add the seller to the platform
     }
-    public String generateBookName()
-    {
-        String[] book_names={"Introduction To Algorithm","Digital Design","Machine Learning","Maths For Machine Learning","Topology","Number Theory","Statistical Physics","Astronomy","Computer Architecture","Computer Networks"};
-        Random random = new Random();
-        int index = random.nextInt(book_names.length);
-        return book_names[index];
-    }
-    public String generateProductID()
-    {
-        return Integer.toString(100+(p_id++)*10);
-    }
-    public float generatePrice() {
-        Random rd = new Random(); // creating Random object
-        return rd.nextFloat()*1000; // displaying a random float value between 0.0 and 1.0
-    }
-    public int generateQuantity() {
-        Random rd = new Random(); // creating Random object
-        return rd.nextInt()*100;
-    }
 	public void addBook()
     {
-        int no_of_books=10;
-        while(no_of_books-->0)
-        {
-            String book_name=generateBookName();
-            String product_id=generateProductID();
-            float book_price=generatePrice();
-            int quantity=generateQuantity(); 
-            Book b=new Book(Globals.Category.Book, book_name, product_id, book_price, quantity);
-            productList.add(b);
-        }
+        Book b1=new Book(Globals.Category.Book,getID()+"Hamlet",getID()+"100", (float) 400.0, 90);
+        Book b2=new Book(Globals.Category.Book,getID()+"The Merchant Of Venice",getID()+"101", (float) 250.0, 220);
+        Book b3=new Book(Globals.Category.Book,getID()+"The Isles of Naath",getID()+"102", (float) 100.0, 10);
+        Book b4=new Book(Globals.Category.Book,getID()+"The Song Of Ice And Fire",getID()+"103", (float) 200.0, 140);
+        Book b5=new Book(Globals.Category.Book,getID()+"Macbeth",getID()+"104", (float) 890.0, 20);
+        Book b6=new Book(Globals.Category.Book,getID()+"Chernobyl",getID()+"105", (float) 360.0,85);
+        productList.add(b1);
+        productList.add(b2);
+        productList.add(b3);
+        productList.add(b4);
+        productList.add(b5);
+        productList.add(b6);
     }
     
     public void addMobile()
     {
-        int no_of_mobile=10;
-        while(no_of_mobile-->0)
-        {
-            String mobile_name=generateMobileName();
-            String product_id=generateProductID();
-            float mobile_price=generatePrice();
-            int quantity=generateQuantity(); 
-            Mobile m=new Mobile(Globals.Category.Mobile, mobile_name, product_id, mobile_price, quantity);
-            productList.add(m);
-        }
-    }
-	public String generateMobileName() {
-        String[] mobile_names={"Samsung","Apple","Blackberry","Nokia","RedMi","RealMe","ASUS"};
-        Random random = new Random();
-        int index = random.nextInt(mobile_names.length);
-        return mobile_names[index];
+        Mobile b1=new Mobile(Globals.Category.Mobile,getID()+"HP Notebook",getID()+"500", (float) 40000.0, 30);
+        Mobile b2=new Mobile(Globals.Category.Mobile,getID()+"ASUS Zen Laptop",getID()+"501", (float) 25000.0, 20);
+        Mobile b3=new Mobile(Globals.Category.Mobile,getID()+"Apple M1 Pro",getID()+"502", (float) 15590.0, 10);
+        Mobile b4=new Mobile(Globals.Category.Mobile,getID()+"Redmi Notebook Pro",getID()+"503", (float) 34200.0, 40);
+        Mobile b5=new Mobile(Globals.Category.Mobile,getID()+"Infinix Pro Inspiron",getID()+"504", (float) 94720.0, 20);
+        Mobile b6=new Mobile(Globals.Category.Mobile,getID()+"RealMe Desktop",getID()+"505", (float) 17740.0,85);
+        productList.add(b1);
+        productList.add(b2);
+        productList.add(b3);
+        productList.add(b4);
+        productList.add(b5);
+        productList.add(b6);
     }
     // Seller to return listing of Products of specified Category
 	public ArrayList<Product> findProducts(Globals.Category whichOne)
@@ -77,7 +54,7 @@ public class Seller1 extends Seller{
         ArrayList<Product> listing=new ArrayList<Product>();
         for(Product i: productList)
         {
-            if(i.equals(whichOne))
+            if(i.getCategory().equals(whichOne))
             {
                 listing.add(i);
             }
@@ -96,7 +73,6 @@ public class Seller1 extends Seller{
                 if(i.getQuantity()>=quantity)
                 {
                     i.reduceQuantity(quantity);
-                    i.increasePrice();
                     return true;
                 }
                 else
