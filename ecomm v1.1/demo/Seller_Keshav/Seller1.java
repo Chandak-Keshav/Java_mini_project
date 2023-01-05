@@ -34,12 +34,12 @@ public class Seller1 extends Seller{
 
     public float generatePrice() {
         Random rd = new Random(); // creating Random object
-        return rd.nextFloat()*1000; // displaying a random float value between 0.0 and 1.0
+        return rd.nextFloat((float) 1000); // displaying a random float value between 0.0 and 1.0
     }
 
     public int generateQuantity() {
         Random rd = new Random(); // creating Random object
-        return rd.nextInt(200)*100;
+        return rd.nextInt(200);
     }
 
 	public void addBook()

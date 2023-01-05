@@ -45,6 +45,6 @@ public class ProductMain extends Product {
     }
     public void changePriceRandomly() {
         Random rd = new Random(); // creating Random object
-        price=rd.nextFloat()*100000;
+        price=rd.nextFloat((float) 10000.0);
     }
 }
