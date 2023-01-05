@@ -18,6 +18,7 @@ public class DemoPlatform extends Platform {
 	private HashMap<String,Seller> IdToSellerMap = new HashMap<String,Seller>();
 	private HashSet<Seller> sellerList = new HashSet<Seller>();  // Also storing all the seller objects in a different hash set.
 
+
 	// Declaring the file readers and writers.
 	private FileReader fr;
 	private FileWriter fw;
@@ -29,7 +30,7 @@ public class DemoPlatform extends Platform {
 	public DemoPlatform() {
 		try {
 			fr = new FileReader(Globals.toPlatform);
-			fw = new FileWriter(Globals.fromPlatform);
+			fw = new FileWriter(Globals.fromPlatform,true);
 			br = new BufferedReader(fr);
 			bw = new BufferedWriter(fw);
 		} catch (IOException e) {
@@ -37,7 +38,6 @@ public class DemoPlatform extends Platform {
 		}
 	}
 	
-
 	// addSeller methods adds the seller to the sellerList and adds a entry in IdToSellerMap withrespect to the given seller.
 	@Override
 	public boolean addSeller(Seller aSeller) {
@@ -72,6 +72,8 @@ public class DemoPlatform extends Platform {
 					handleBuyRequest(portalId, requestId,productId, numItems);
 				}
 			}
+			bw.flush();
+			fw.flush();
 		} catch (IOException e) {
 			System.out.println("IOException while reading the file. By Ricky");
 		}
@@ -91,8 +93,6 @@ public class DemoPlatform extends Platform {
 				bw.write(s + " ");
 			}
 			bw.newLine();
-			// bw.flush();
-			// fw.flush();
 		} catch (IOException e) {
 			System.out.println("Problem while writing to the file");
 		}
@@ -101,10 +101,9 @@ public class DemoPlatform extends Platform {
 
 	// This method handles the list request.
 	private void handleListRequest(String portalId,String requestId,String requestCategory) {
-
 		ArrayList<Product> productList = new ArrayList<Product>();  //Stores all the products of the given category.
-		
 		Globals.Category category;
+
 		if (requestCategory.equals("Mobile")) {
 			category = Globals.Category.Mobile;
 		} else {
@@ -112,7 +111,6 @@ public class DemoPlatform extends Platform {
 		}
 
 		for(Seller s : sellerList) {
-			System.out.println("Hello");
 			productList.addAll(s.findProducts(category));  //Adding the list of products gained by the sellers to the productList.
 		}
 		try {
@@ -120,8 +118,6 @@ public class DemoPlatform extends Platform {
 				bw.write(portalId + " "  + requestId + " " + p.getName() + " " + p.getProductID() + " " + p.getPrice() + " " + p.getQuantity());
 				bw.newLine();
 			}
-			bw.flush();
-			fw.flush();
 		} catch (IOException e) {
 			System.out.println("Error while writing to the file. For List request.");
 		}
@@ -130,11 +126,17 @@ public class DemoPlatform extends Platform {
 
 
 	private void handleBuyRequest(String portalId, String requestId, String productId, String numItems) {
-		String[] productInfo = new String[2];
-		productInfo = productId.split("_");
-		String sellerName = productInfo[0];
 		int numberOfItems = Integer.parseInt(numItems);
-		Boolean buyStatus = IdToSellerMap.get(sellerName).buyProduct(productId, numberOfItems);
+		Boolean buyStatus = false;
+		for(Seller s : sellerList) {
+			if (s.buyProduct(productId,numberOfItems)) {
+				if (buyStatus) { System.out.println("Two products with same productId are available"); }
+				else {
+					buyStatus = true;
+				}
+			}
+		}
+		
 		String output;
 		if (buyStatus) { output = "Success"; }
 		else {output = "Failure";}
@@ -143,5 +145,19 @@ public class DemoPlatform extends Platform {
 		} catch (IOException e) {
 			System.out.println("Error while writing to the file. In buy command");
 		}
+
+		// String[] productInfo = new String[2];
+		// productInfo = productId.split("_");
+		// String sellerName = productInfo[0];
+		// int numberOfItems = Integer.parseInt(numItems);
+		// Boolean buyStatus = IdToSellerMap.get(sellerName).buyProduct(productId, numberOfItems);
+		// String output;
+		// if (buyStatus) { output = "Success"; }
+		// else {output = "Failure";}
+		// try {
+		// 	bw.write(portalId + " " + requestId + " " + output);
+		// } catch (IOException e) {
+		// 	System.out.println("Error while writing to the file. In buy command");
+		// }
 	}
 }
