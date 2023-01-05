@@ -41,4 +41,7 @@ public class ProductMain extends Product {
     {
         return quantity;
     }
+    public void increasePrice() {
+        price*=(float)1.1; //increase by 10%
+    }
 }

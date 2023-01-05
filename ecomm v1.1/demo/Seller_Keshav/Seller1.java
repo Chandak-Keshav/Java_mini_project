@@ -81,7 +81,7 @@ public class Seller1 extends Seller{
 	public ArrayList<Product> findProducts(Globals.Category whichOne)
     {
         ArrayList<Product> listing = new ArrayList<Product>();
-        for(Product i: productList)
+        for(ProductMain i: productList)
         {
             if(i.getCategory().equals(whichOne))
             {
