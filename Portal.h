@@ -14,6 +14,8 @@ class Portal
         int portalId; 
         int requestId = 0;
         static int incrementor;
+        string prevId = "0";
+        vector <product> listing;
         ofstream portalToPlatform;
         ifstream platformToPortal;
         string tempLine;
