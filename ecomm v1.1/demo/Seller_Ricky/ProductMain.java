@@ -1,5 +1,7 @@
 package demo.Seller_Ricky;
 
+import java.util.Random;
+
 import ecomm.Globals;
 import ecomm.Product;
 import ecomm.Globals.Category;
@@ -40,5 +42,9 @@ public class ProductMain extends Product {
 	public int getQuantity()
     {
         return quantity;
+    }
+    public void changePriceRandomly() {
+        Random rd = new Random(); // creating Random object
+        price=rd.nextFloat()*100000;
     }
 }

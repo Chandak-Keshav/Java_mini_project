@@ -77,7 +77,7 @@ public class Seller1 extends Seller{
         ArrayList<Product> listing=new ArrayList<Product>();
         for(Product i: productList)
         {
-            if(i.equals(whichOne))
+            if(i.getCategory().equals(whichOne))
             {
                 listing.add(i);
             }
@@ -96,7 +96,6 @@ public class Seller1 extends Seller{
                 if(i.getQuantity()>=quantity)
                 {
                     i.reduceQuantity(quantity);
-                    i.increasePrice();
                     return true;
                 }
                 else
