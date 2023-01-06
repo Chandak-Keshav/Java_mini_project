@@ -2,9 +2,9 @@ import java.util.Scanner;
 
 import ecomm.Platform;
 import demo.DemoPlatform;
-import demo.Sellers.Seller_Ricky.*;
-import demo.Sellers.Seller_Keshav.*;
-import demo.Sellers.Seller_Rishi.*;
+import demo.Seller_Ricky.*;
+import demo.Seller_Keshav.*;
+import demo.Seller_Rishi.*;
 
 public class PlatformMain {
 	public static void main(String[] args) {
