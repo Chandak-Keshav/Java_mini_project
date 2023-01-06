@@ -5,43 +5,34 @@ import ecomm.Product;
 import ecomm.Globals.Category;
 
 public class ProductMain extends Product {
+    
+    // Data members of class ProductMain
     private float price;
     private int quantity;
-    private String product_id,name;
+    private String product_id, name;
+	
     Globals.Category category;
-    public ProductMain(Category p_category,String p_name,String p_product_id,float p_price,int p_quantity)
+	
+    public ProductMain(Category _category, String _name, String _product_id, float _price, int _quantity)
     {
-        category=p_category;
-        name=p_name;
-        product_id=p_product_id;
-        price=p_price;
-        quantity=p_quantity;
+        category = _category;
+        name = _name;
+        product_id = _product_id;
+        price = _price;
+        quantity = _quantity;
     }
-    public Globals.Category getCategory()
-    {
-        return category;
-    }
-	public String getName()
-    {
-        return name;
-    }
-	public String getProductID()
-    {
-        return product_id;
-    }
-    public void reduceQuantity(int reduced_amount)
-    {
-        quantity=quantity-reduced_amount;
-    }
-	public float getPrice()
-    {
-        return price;
-    }
-	public int getQuantity()
-    {
-        return quantity;
-    }
+	
+    public Globals.Category getCategory() { return category; }
+    
+    // Getters and Setters for appropriate data members of this class.
+    public String getName() { return name; }
+    public String getProductID() { return product_id; }
+    public void reduceQuantity(int reduced_amount) { quantity = quantity-reduced_amount; }
+    public float getPrice() { return price; }	
+    public int getQuantity() { return quantity; }
     public void increasePrice() {
-        price*=(float)1.1; //increase by 10%
+	    
+	// Increase the price of product by 10 % if quantity decreases.
+        price *= (float) 1.1;
     }
 }
