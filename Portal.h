@@ -14,9 +14,11 @@ class Portal
         int portalId; 
         int requestId = 0;
         static int incrementor;
+        string prevId = "0";
+        vector <product> listing;
         ofstream portalToPlatform;
         ifstream platformToPortal;
-        string tempLine;
+        string tempLine, tempLine2;
         string previousLine;
         map <string, string> mapIdToCommandType;
         queue <string> queueOfSortParameter;
