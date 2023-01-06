@@ -101,10 +101,16 @@ public class Keshav_Seller extends Seller{
         {
             if(i.getProductID().equals(productID))
             {
-                if(i.getQuantity()>=quantity)
+                if(i.getQuantity()>quantity)
                 {
                     i.reduceQuantity(quantity);
                     i.increasePrice();//this is implemented for dynamic price,we increase the price whenever quantity decreases 
+                    return true;
+                }
+                else if(i.getQuantity()==quantity)
+                {
+                    i.reduceQuantity(quantity);
+                    productList.remove(i); //this is done as the quantity will become zero, and thus it's existence makes no sense
                     return true;
                 }
                 else
