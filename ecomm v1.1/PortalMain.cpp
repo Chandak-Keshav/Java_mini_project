@@ -1,7 +1,7 @@
-#include "DemoPortal.h"
-#include "product.h"
-#include "DemoPortal.cpp"
-#include "product.cpp"
+#include "./demo/DemoPortal.h"
+#include "./demo/product.h"
+#include "./demo/DemoPortal.cpp"
+#include "./demo/product.cpp"
 
 int main(void)
 {
