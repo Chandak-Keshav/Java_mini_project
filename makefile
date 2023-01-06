@@ -1,7 +1,7 @@
 output: main.o product.o Portal.o
 	g++ main.o product.o Portal.o -o output
 
-main.o: main.cpp
+PortalMain.o: PortalMain.cpp
 	g++ -c main.cpp
 
 product.o: product.cpp product.h
