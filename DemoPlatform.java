@@ -1,5 +1,3 @@
-package demo;
-
 import ecomm.Globals;
 import ecomm.Platform;
 import ecomm.Product;
@@ -16,7 +14,7 @@ public class DemoPlatform extends Platform {
 	//A mapping from sellerId to the seller to easily identify the seller based on the sellerId.
 	private HashMap<String,Seller> IdToSellerMap = new HashMap<String,Seller>();
 	private HashSet<Seller> sellerList = new HashSet<Seller>();  // Also storing all the seller objects in a different hash set.
-	private HashSet<String> requestIdList = new HashSet<String>();
+	private HashMap<String,HashSet<String>> requestIdList = new HashMap<String,HashSet<String>>(); // Stores the requestsIds of the requests which have been processed.
 
     Scanner sc;
 	private FileWriter fw;
@@ -55,11 +53,18 @@ public class DemoPlatform extends Platform {
 				String requestId = requestComponents[1];
 				String requestType = requestComponents[2]; 
 
+				if ((requestIdList.containsKey(portalId)) && (requestIdList.get(portalId).contains(requestId))) {
+						continue;
+				}
+				else {
+					if (requestIdList.containsKey(portalId)) {
+						requestIdList.get(portalId).add(requestId);
+					} else {
+						HashSet<String> requestForPortal = new HashSet<String>();
+						requestForPortal.add(requestId);
+						requestIdList.put(portalId,requestForPortal);
+					}
 
-				if (requestIdList.contains(requestId)) {
-					continue;
-				} else {
-					requestIdList.add(requestId);
 					// Checking the type of request and passing the control to the respective handler of that request.
 					if (requestType.equals("Start")) {
 						handleStartRequest(portalId, requestId);
@@ -78,7 +83,7 @@ public class DemoPlatform extends Platform {
 				}
 			}
 		} catch (IOException e) {
-			System.out.println("IOException while reading the file. By Ricky");
+			System.out.println("IOException while reading the requests from the file");
 			e.printStackTrace();
 		}
 	}
@@ -98,7 +103,7 @@ public class DemoPlatform extends Platform {
 			}
 			bw.newLine();
 		} catch (IOException e) {
-			System.out.println("Problem while writing to the file");
+			System.out.println("Problem while writing to the file for start request");
 		}
 	}
 
@@ -123,12 +128,12 @@ public class DemoPlatform extends Platform {
 				bw.newLine();
 			}
 		} catch (IOException e) {
-			System.out.println("Error while writing to the file. For List request.");
+			System.out.println("Error while writing to the file for List request.");
 		}
 	}
 
 
-
+	// Handler for buy request.
 	private void handleBuyRequest(String portalId, String requestId, String productId, String numItems) {
 		int numberOfItems = Integer.parseInt(numItems);
 		Boolean buyStatus = false;
@@ -146,8 +151,9 @@ public class DemoPlatform extends Platform {
 		else {output = "Failure";}
 		try {
 			bw.write(portalId + " " + requestId + " " + output);
+			bw.newLine();
 		} catch (IOException e) {
-			System.out.println("Error while writing to the file. In buy command");
+			System.out.println("Error while writing to the file for buy request.");
 		}
 
 		// String[] productInfo = new String[2];
