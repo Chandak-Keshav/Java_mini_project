@@ -11,13 +11,13 @@ public class ProductMain extends Product {
     private int quantity;
     private String product_id,name;
     Globals.Category category;
-    public ProductMain(Category p_category,String p_name,String p_product_id,float p_price,int p_quantity)
+    public ProductMain(Category category,String name,String product_id,float price,int quantity)
     {
-        category=p_category;
-        name=p_name;
-        product_id=p_product_id;
-        price=p_price;
-        quantity=p_quantity;
+        this.category=category;
+        this.name=name;
+        this.product_id=product_id;
+        this.price=price;
+        this.quantity=quantity;
     }
     public Globals.Category getCategory()
     {
