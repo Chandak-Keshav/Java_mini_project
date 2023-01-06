@@ -1,0 +1,24 @@
+566 1 Mobile Book 
+566 2 Seller3-Statistics Seller31 1100.0 360
+566 2 Seller3-Probability Seller32 1375.0 180
+566 2 Seller3-Number_Theory Seller33 1430.0 120
+566 2 Seller3-Regression Seller34 2068.0 100
+566 2 Seller3-Topology Seller35 649.0 80
+566 2 Seller3-Graph_Theory Seller36 286.0 65
+566 2 Seller1-Hamlet Seller1100 400.0 90
+566 2 Seller1-The_Merchant_Of_Venice Seller1101 250.0 220
+566 2 Seller1-The_Isles_of_Naath Seller1102 100.0 10
+566 2 Seller1-The_Song_Of_Ice_And_Fire Seller1103 200.0 140
+566 2 Seller1-Macbeth Seller1104 890.0 20
+566 2 Seller1-Chernobyl Seller1105 360.0 85
+566 2 Seller2-Machine_Learning Seller2-100 271.31833 97
+566 2 Seller2-Maths_For_Machine_Learning Seller2-101 808.2098 122
+566 2 Seller2-Computer_Networks Seller2-102 838.7531 6
+566 2 Seller2-Machine_Learning Seller2-103 821.0983 122
+566 2 Seller2-Digital_Design Seller2-104 208.60225 160
+566 2 Seller2-Statistical_Physics Seller2-105 426.98645 70
+566 2 Seller2-Astronomy Seller2-106 209.13696 182
+566 2 Seller2-Digital_Design Seller2-107 54.995834 53
+566 2 Seller2-Maths_For_Machine_Learning Seller2-108 287.6839 87
+566 2 Seller2-Number_Theory Seller2-109 146.14874 106
+566 3 Failure
