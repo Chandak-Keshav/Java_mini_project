@@ -3,11 +3,11 @@
 Portal:: Portal()
 {
     // Sets up a unique portal id pertaining
-    // To a particular Portal.
+    // To a particular Portal
 
-    std::random_device rd; // obtain a random number from hardware
-    std::mt19937 gen(rd()); // seed the generator
-    std::uniform_int_distribution<> distr(10, 1000); // define the range
+    std::random_device rd;  // Obtain a random number from hardware
+    std::mt19937 gen(rd()); // Seed the generator
+    std::uniform_int_distribution<> distr(10, 1000); // Define the range
     
     portalId = distr(gen);
     
@@ -94,31 +94,52 @@ bool Portal::checkResponse()
     return flag;
 }
 
-// 
+// Sends the data that has been recieved to user.
 void Portal::sendUserData()
 {
+    // Variable to temporarily store data that is seperated by space.
     string data; stringstream ss(previousLine);
+    
+    // Vector to store data recieved in a line. (seperated by space)
     vector <string> dataRecieved; 
 
+    // Seperate by space and store data.
     while(getline(ss, data, ' ')) dataRecieved.push_back(data);
 
+    // Get Id = "<Portal Id><Request Id>"
     string Id = dataRecieved[0] + dataRecieved[1];
+    
     if(mapIdToCommandType[Id] == "Start")
     {
+        // If list of products is not empty then it implies
+        // That the products have been sorted but not sent to
+        // User on the terminal.
         if(!listing.empty())
         {
             vector <product> sortedList = sortPrevList(listing);
             sendUserList(sortedList);
+            
+            // After sending the user the sorted list, clear the list.
             listing.clear();
         }
+
+        // Send data recieved corresponding to Start instruction.
+        // That is All Categories.
         for(int i = 2; i < dataRecieved.size(); i++) 
             cout << dataRecieved[i] << "\n";
     }
 
     else if(mapIdToCommandType[Id] == "List")
     {
+        // If Id stored previously is not the same as Id recieved now.
+        // Then it means that the data recieved has moved onto a newer
+        // List or other data corresponding to Start and Buy. But it 
+        // must be a list as this Id is also mapped to List.
+        // Thus now the previously stored List must be sent to user.
+        // and the new data for the new list must be stored.
         if(prevId != Id)
         {
+            // Set the previous Id to newly recieved Id
             prevId = Id;
             
             if(!listing.empty())
@@ -130,17 +151,25 @@ void Portal::sendUserData()
         }
 
         listing.push_back(product(dataRecieved[2], dataRecieved[3], 
-                                  stoi(dataRecieved[4]), stoi((dataRecieved[5]))));
+                                  stof(dataRecieved[4]), stoi((dataRecieved[5]))));
     }
     
     else if(mapIdToCommandType[Id] == "Buy")
     {
+        // If list of products is not empty then it implies
+        // That the products have been sorted but not sent to
+        // User on the terminal.
         if(!listing.empty())
         {
             vector <product> sortedList = sortPrevList(listing);
             sendUserList(sortedList);
+            
+            // After sending the user the sorted list, clear the list.
             listing.clear();
         }
+
+        // Send data recieved to user on terminal that is 
+        // Whether transaction was succesful or not.
         cout << dataRecieved[2] << "\n";
     }
     
