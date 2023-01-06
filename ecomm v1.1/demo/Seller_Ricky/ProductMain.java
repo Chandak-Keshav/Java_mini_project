@@ -11,38 +11,41 @@ public class ProductMain extends Product {
     private int quantity;
     private String product_id,name;
     Globals.Category category;
-    public ProductMain(Category category,String name,String product_id,float price,int quantity)
-    {
-        this.category=category;
-        this.name=name;
-        this.product_id=product_id;
-        this.price=price;
-        this.quantity=quantity;
+    public ProductMain(Category category,String name,String product_id,float price,int quantity) {
+        this.category = category;
+        this.name = name;
+        this.product_id = product_id;
+        this.price = price;
+        this.quantity = quantity;
     }
-    public Globals.Category getCategory()
-    {
+
+    // Implementing the getter and setters for the category,Name,productID
+    public Globals.Category getCategory() {
         return category;
     }
-	public String getName()
-    {
+
+	public String getName() {
         return name;
     }
-	public String getProductID()
-    {
+
+    public String getProductID() {
         return product_id;
     }
-    public void reduceQuantity(int reduced_amount)
-    {
-        quantity=quantity-reduced_amount;
+
+    // Methiod to reduce the amount of the product quantity
+    public void reduceQuantity(int reduced_amount) {
+        quantity = quantity - reduced_amount;
     }
-	public float getPrice()
-    {
+
+	public float getPrice() {
         return price;
     }
-	public int getQuantity()
-    {
+
+	public int getQuantity() {
         return quantity;
     }
+
+    // Chnaging the price randomly to mimic the functionality of seller being able to change the price dynamically.
     public void changePriceRandomly() {
         Random rd = new Random(); // creating Random object
         price=rd.nextFloat((float) 10000.0);

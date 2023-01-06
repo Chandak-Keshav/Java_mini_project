@@ -27,7 +27,7 @@ public class PlatformMain {
 		// Always waiting for input from user. If check is provided then processRequests or else close the program.
 		while(true) {
 			command = sc.next();
-			if (command.equals("check")) {
+			if (command.equals("Check")) {
 				pf.processRequests();
 			} else {
 				sc.close();

@@ -24,9 +24,13 @@ public class Keshav_Seller extends Seller{
     public String generateBookName() {
         //all course related books are given below
         String[] book_names={"Introduction_To_Algorithm","Digital_Design","Machine_Learning","Maths_For_Machine_Learning","Topology","Number_Theory","Statistical_Physics","Astronomy","Computer_Architecture","Computer_Networks"};
+        String[] author_first_name={"Rohit","Subhajeet","Keshav","Deep","Rishi","Ricky","Alok","Harsh","Aditya"};
+        String[] author_last_name={"Shah","Gupta","Garg","Chandak","Dutt","Lahiri","Kumar"};
         Random random = new Random();
         int index = random.nextInt(book_names.length);//we pick any random index of string array
-        return getID()+"-"+book_names[index];//this will give SellerId-book_name
+        int first_index = random.nextInt(author_first_name.length);
+        int last_index = random.nextInt(author_last_name.length);
+        return getID()+"-"+book_names[index]+"_By_"+author_first_name[first_index]+"_"+author_last_name[last_index];//this will give SellerId-book_name
     }
 
     public String generateProductID() {
