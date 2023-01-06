@@ -1,6 +1,7 @@
 #pragma once
 
 #include <iostream>
+#include <random>
 #include <bits/stdc++.h>
 
 #include "product.h"
@@ -13,8 +14,7 @@ class Portal
 
         int portalId; 
         int requestId = 0;
-        static int incrementor1;
-        static int incrementor2;
+        // int *incrementor1 = new int;
         string prevId = "0";
         vector <product> listing;
         ofstream portalToPlatform;
@@ -32,14 +32,4 @@ class Portal
         void sendUserData();
         void sendUserList(vector <product> &listing);
         vector <product> sortPrevList(vector <product> &listing);
-        
-        static int getPortalId()
-        {
-            return ++ Portal::incrementor1;
-        }
-
-        static int getRequestId()
-        {
-            return ++ Portal::incrementor2;
-        }
 };
