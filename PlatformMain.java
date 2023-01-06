@@ -1,26 +1,30 @@
 import java.util.Scanner;
 
-import demo.DemoPlatform;
-import demo.Seller_Keshav.Seller1;
 import ecomm.Platform;
+import demo.DemoPlatform;
+import demo.Sellers.Seller_Ricky.*;
+import demo.Sellers.Seller_Keshav.*;
+import demo.Sellers.Seller_Rishi.*;
 
 public class PlatformMain {
-
 	public static void main(String[] args) {
 
-		Platform pf = new DemoPlatform();
+		Platform pf = new DemoPlatform(); // Object of DemoPlatform for testing.
 		
-		Seller1 s1 = new Seller1("Seller1"); 
+		// Adding the sellers made by the tree team members.
+		Ricky_Seller s1 = new Ricky_Seller("Seller1");
 		s1.addPlatform(pf);
 
-		Seller1 s2 = new Seller1("Seller2");
+		Keshav_Seller s2 = new Keshav_Seller("Seller2");
 		s2.addPlatform(pf);
-		
-		Seller1 s3 = new Seller1("Seller3");
+
+		Rishi_Seller s3= new Rishi_Seller("Seller3");
 		s3.addPlatform(pf);
+
 
 		Scanner sc = new Scanner(System.in);
 		String command;
+		// Always waiting for input from user. If check is provided then processRequests or else close the program.
 		while(true) {
 			command = sc.next();
 			if (command.equals("check")) {
@@ -30,33 +34,5 @@ public class PlatformMain {
 				break;
 			}
 		}
-		
-		// replace with appropriate derived class
-		
-		// create a number of sellers (of different sub-types of Seller)
-		// Assign a name (sellerID) to each of them.
-		
-		// replace each of the XYZ below with the derived class name of one of the
-		// team members.
-		
-		/*
-		Seller s1 = new DemoSeller1("Seller1"); 
-		s1.addPlatform(pf);
-
-		Seller s2 = new SellerXYZ("Seller2");
-		s1.addPlatform(pf);
-		
-		Seller s3 = new SellerXYZ2("Seller3");
-		s1.addPlatform(pf);
- 		*/
-		
-		/*
-		// keep reading from System.in
-		// If "Check" typed in
-		// invoke 
-			pf.processRequests();
-		*/
-			
 	}
-
 }
