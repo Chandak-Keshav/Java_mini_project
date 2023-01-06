@@ -1,10 +1,13 @@
 #include "Portal.h"
 
+int Portal::incrementor1 = 0;
+int Portal::incrementor2 = 0;
+
 Portal:: Portal()
 {
     // portalId = Portal::getPortalId();
     // For now, the portal id is set to 1.
-    portalId = 1;
+    portalId = Portal::getPortalId();
     
     // Open PortalToPlatform.txt in append mode.
     // Open PlatformToPortal.txt in read mode.
@@ -14,7 +17,8 @@ Portal:: Portal()
 
 void Portal::processUserCommand(string command)
 {
-    requestId = requestId + 1;
+    
+    requestId = Portal::getRequestId();
     string tempFirstWord = command.substr(0, command.find(" "));
     if(tempFirstWord == "List") 
     {

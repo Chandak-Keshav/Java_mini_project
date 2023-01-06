@@ -13,7 +13,8 @@ class Portal
 
         int portalId; 
         int requestId = 0;
-        static int incrementor;
+        static int incrementor1;
+        static int incrementor2;
         string prevId = "0";
         vector <product> listing;
         ofstream portalToPlatform;
@@ -31,8 +32,14 @@ class Portal
         void sendUserData();
         void sendUserList(vector <product> &listing);
         vector <product> sortPrevList(vector <product> &listing);
+        
         static int getPortalId()
         {
-            return ++ Portal::incrementor;
+            return ++ Portal::incrementor1;
+        }
+
+        static int getRequestId()
+        {
+            return ++ Portal::incrementor2;
         }
 };
