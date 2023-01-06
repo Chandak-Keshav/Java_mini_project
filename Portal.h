@@ -14,14 +14,19 @@ class Portal
 
         int portalId; 
         int requestId = 0;
-        // int *incrementor1 = new int;
         string prevId = "0";
+        
+        // vector to store list of products
         vector <product> listing;
+        
+        // File Streams
         ofstream portalToPlatform;
         ifstream platformToPortal;
         string tempLine, tempLine2;
         string previousLine;
         map <string, string> mapIdToCommandType;
+        
+        // Queue to store sort parameters
         queue <string> queueOfSortParameter;
 
     public:
